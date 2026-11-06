@@ -1,0 +1,39 @@
+{
+  "repo_name": "tab-sleep",
+  "date": "2026-11-06",
+  "category": "browser-extension",
+  "one_line_summary": "A minimal Chrome/Firefox extension that lets each tab have its own idle sleep schedule, so you can put a noisy tab to bed without touching the OS sleep settings.",
+  "problem": "When you keep a dozen tabs open, the noisy ones keep waking the machine, draining battery, or eating attention, and the OS-level sleep settings don't let you pick per-tab behavior.",
+  "audience": "Non-developer: people who want quieter, more battery-friendly browsing without learning about site settings or installing heavy tab managers.",
+  "solution": "A lightweight extension that adds a small 'sleep' control per tab, remembers a per-tab idle timer, and suspends activity for that tab by hiding it or flagging it as dismissed until you wake it. Configuration is a simple per-site default plus per-tab overrides.",
+  "key_features": [
+    "Per-tab sleep toggle and idle timer",
+    "Per-site default sleep policy",
+    "Sleep/wake state shown in the tab and in a small popup",
+    "Option to auto-sleep tabs that have been idle longer than N minutes",
+    "No remote calls; everything stored locally in extension storage"
+  ],
+  "tech_stack": ["manifest-v3", "javascript"],
+  "mvp_scope": "popup with per-tab sleep control, per-site defaults, idle-based auto-sleep for configurable minutes, storage of state, wake-up restores visibility/activity indicator.",
+  "non_dev_usable": true,
+  "tests_plan": [
+    "Unit test the idle-time bookkeeping and policy lookup in a small Node test harness that mimics the background script helpers",
+    "Test per-site default resolution order (per-tab overrides site default)",
+    "Test that sleep/wake round-trip preserves the tab's policy and idle time"
+  ],
+  "files": {
+    "manifest.json": "MV3 manifest with permissions for storage and tab capture model (no host permissions needed beyond what the extension UI needs)",
+    "background.js": "Idle timer bookkeeping, per-tab and per-site policy resolution, sleep/wake actions",
+    "popup.html + popup.js + popup.css": "Popup UI for sleep/wake and per-site defaults",
+    "content.js": "Optional content-side indicator that a tab is sleeping and wake-up notification",
+    "lib/policy.js": "Pure logic: resolve effective policy for a tab id + site",
+    "lib/idle.js": "Pure logic: idle time bookkeeping, auto-sleep decisions",
+    "tests/policy_test.js": "Unit tests for policy resolution",
+    "tests/idle_test.js": "Unit tests for idle bookkeeping",
+    "tests/run_tests.sh": "Runs node tests (no browser required for MVP logic tests)",
+    "README.md": "What it does, install, usage, limitations",
+    "RESULTS.md": "Actual observed MVP results and test output",
+    ".gitignore": "node_modules, logs",
+    "LICENSE": "MIT"
+  }
+}

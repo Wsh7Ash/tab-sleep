@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tab Sleep</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main>
+    <h1>Tab Sleep</h1>
+    <div class="status" id="status">Loading…</div>
+    <div class="controls">
+      <button id="sleepBtn" class="danger">Sleep this tab</button>
+      <button id="wakeBtn">Wake this tab</button>
+    </div>
+    <fieldset>
+      <legend>Per-site default</legend>
+      <label class="minutes">
+        Auto-sleep after (minutes, 0 = off)
+        <input id="perSiteInput" type="number" min="0" step="1" value="0" />
+      </label>
+      <button id="setDefaultBtn">Set default</button>
+    </fieldset>
+    <small id="siteInfo">Site: —</small>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

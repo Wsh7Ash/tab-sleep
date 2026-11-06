@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Sleep",
+  "version": "0.1.0",
+  "description": "Let each tab have its own idle sleep schedule.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.svg"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon.svg",
+    "48": "icon.svg",
+    "128": "icon.svg"
+  }
+}
